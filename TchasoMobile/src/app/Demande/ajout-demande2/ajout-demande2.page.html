@@ -1,0 +1,39 @@
+<ion-content class="arrierePlan" >
+  
+  <ion-row style="background-color: #f5bb20;">
+    <ion-col size="10">
+      <ion-row>
+        <ion-col size="2">
+          <ion-img src="{{photo}} + {{travailleur.id}}" style="height: 25px; border-radius: 50%;"></ion-img>
+        </ion-col>
+        <ion-col size="10">
+          <b style="font-size: 10px; text-align: center;">Salut <b style="font-size: 10px;">{{client.prenom}} {{client.nom}}</b> !</b><br>
+          <b style="font-size: 9px;">Comment pourrais-je vous aider ?</b>
+        </ion-col>
+      </ion-row>
+      
+      
+    </ion-col>
+    <ion-col size="2"> <a (click)="close()"><ion-icon name="close" class="close"></ion-icon></a></ion-col>
+  </ion-row>
+  <form #form="ngForm"  (ngSubmit)="addDemande(form)" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating" color="black"><b>Motif de la demande</b></ion-label>
+        <ion-textarea [(ngModel)]="demande.motif" name="motif" type="text" #motif="ngModel" required>
+        </ion-textarea>
+      </ion-item>
+
+      <ion-text color="danger" *ngIf="motif.invalid && motif.touched">
+            La demande est obligatoire
+      </ion-text>
+    </ion-list>
+
+    <ion-row>
+      <ion-col>
+        <ion-button [disabled]="form.invalid" type="submit" expand="block">Envoyer</ion-button>
+      </ion-col>
+    </ion-row>
+   
+  </form>
+</ion-content>

@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <app-connectnotify></app-connectnotify>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="bare-grise">
+    <p style="color: white; margin: 10px 0px 0px 50px;">Spécialité {{specialite}}</p>
+  </ion-row>
+  <ion-searchbar animated
+  [showCancelButton]="shouldShowCancel"
+  (ionChange)="filterList($event)" class="search">
+</ion-searchbar>
+<div *ngIf="travailleurs !== null; else noItems">
+  <ion-list  *ngFor="let tr of travailleurs">
+    <ion-item *ngIf="tr.id !== customer.id" [routerLink]="['/les-travailleurs', tr.id]" >
+      <!-- <ion > -->
+        <ion-avatar slot="start">
+          <ion-img src="{{image}} + {{tr.id}}"></ion-img>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{tr?.nom}} {{tr?.prenom}}</h2>
+          <h3>{{tr?.specialite.nomspe}}</h3>
+          <p>{{tr.ville?.nomville}}, {{tr.quartier}}</p>
+        </ion-label>
+      <!-- </ion> -->
+    </ion-item>
+     
+      
+  </ion-list>
+</div>
+<ng-template #noItems>
+  <ion-item>Aucun resultat trouvé</ion-item>
+</ng-template>
+
+  
+  <ion-fab vertical="center" horizontal="end" slot="fixed">
+    <ion-fab-button  [routerLink]="['/accueil']">
+      <ion-icon name="home"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

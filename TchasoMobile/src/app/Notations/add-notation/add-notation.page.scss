@@ -1,0 +1,26 @@
+.popup-width{
+    width: 100%;
+}
+.chiffre{
+    text-align: center; 
+    background-color: #f5bb20; 
+    border-radius: 30px;
+}
+.close{
+    font-size: 35px;
+    color: red;
+}
+ion-col{color: black;}
+img{
+    height: 30px;
+}
+
+ion-button{
+    --border-radius: 0px 50px 50px 0px;
+    --display: block;
+    --margin: 0 auto 0px;
+    --background: #684f0e;
+    //color: ;
+    font-size: 15px;
+    text-transform: lowercase;
+}

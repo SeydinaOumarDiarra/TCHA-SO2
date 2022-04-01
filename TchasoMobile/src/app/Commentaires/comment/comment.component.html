@@ -1,0 +1,15 @@
+
+<form #form="ngForm"  (ngSubmit)="addComment(form)" novalidate>
+  <ion-row class="ion-align-items-center">
+    <ion-col size="9">
+      <ion-textarea autoGrow="true" class="comment-input" rows="1" [(ngModel)]="commentaire.description" name="description"  type="text" #description="ngModel"
+        placeholder="Ajoutez votre commentaire ici...">
+      </ion-textarea>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button expand="block"  type="submit" fill="clear" color="warning" [disabled]="newMsg === ''" class="msg-btn">
+        <ion-icon class="sendCommentBtn" name="send" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</form>

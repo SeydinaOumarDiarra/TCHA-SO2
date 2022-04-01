@@ -1,0 +1,170 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center sous-header">
+            <div class="row col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-sm-4 col-md-6 col-xs-12">
+                    <a href="utilisateurs">
+                     <i class="fas fa-chevron-left" style="font-weight: bold; font-size: 25px; color: #684f0e;" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12" style="float: left;">
+                    <h4 class="page-title">AJOUT TRAVAILLEUR</h4>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex"> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+    <div class="row justify-content-center" style="margin: 0 auto;">
+
+        <div class="col-lg-1 col-lg-md-1 col-xlg-1 col-md-12"></div>
+            <div class="col-lg-10 col-lg-md-10 col-xlg-10 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form  #AjoutForm="ngForm" (ngSubmit)="AjoutTravailleur(AjoutForm)" autocomplete="off" class="form-horizontal form-material row">
+                            <div class="col-lg-6 col-xlg-6 col-md-12">
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Nom *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" placeholder="Saisissez le nom"
+                                                    class="form-control p-0 border-0" name="nom" ngModel  #nom="ngModel" required minlength="5" maxlength="50">
+                                        <div [hidden]="nom.valid || nom.pristine" class="alert alert-danger">
+                                            Le nom est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Prénom *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" placeholder="Saisissez le prénom"
+                                                    class="form-control p-0 border-0" name="prenom" ngModel  #prenom="ngModel" required minlength="5" maxlength="50">
+                                        <div [hidden]="prenom.valid || prenom.pristine" class="alert alert-danger">
+                                            Le prénom est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Genre *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <select  class="form-control p-0 border-0" name="genre" id="singleSelect" ngModel #genre="ngModel" required>
+                                            <option value="">---Sélectionner un genre---</option> 
+                                            <option  value="Homme">Homme</option>
+                                            <option  value="Femme">Femme</option>
+                                        </select>
+                                        <div [hidden]="genre.valid || genre.pristine" class="alert alert-danger">
+                                            Le genre est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Spécialité *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <select  placeholder="Saisissez la specialite"
+                                                    class="form-control p-0 border-0" name="specialite" ngModel  #specialite="ngModel" required>
+                                            <option value="">---Sélectionner une spécialité---</option> 
+                                            <option *ngFor="let specialite of listeSpecialite" value={{specialite.id}}>{{specialite.nomspe}}</option>
+                                        </select> 
+                                        <div [hidden]="specialite.valid || specialite.pristine" class="alert alert-danger">
+                                            La spécialité est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Photo *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input #filephoto type="file" accept=".jpg, .jpeg, .png" placeholder="Choisir une image"
+                                                    class="form-control p-0 border-0" name="photo" ngModel #photo="ngModel" (change)="preview(filephoto.files)" required>
+                                        <div [hidden]="photo.valid || photo.pristine" class="alert alert-danger">
+                                            La photo est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span style="color:red;" *ngIf="messagePhoto">{{messagePhoto}}</span>
+                                    <img [src]="imgURLPhoto" height="200" *ngIf="imgURLPhoto">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-xlg-6 col-md-12">
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Téléphone *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="number" placeholder="Saisissez le téléphone"
+                                                    class="form-control p-0 border-0" name="numWhasapp" ngModel  #numWhasapp="ngModel" pattern=".{8,8}" required>
+                                        <div [hidden]="numWhasapp.valid || numWhasapp.pristine" class="alert alert-danger">
+                                            Le numéro de téléphone est obligatoire et doit être de 8 chiffres
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Ville *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <select  placeholder="Saisissez la ville"
+                                                    class="form-control p-0 border-0" name="ville" ngModel  #ville="ngModel" required>
+                                            <option value="">---Sélectionner une ville---</option> 
+                                            <option *ngFor="let ville of listeVille" value={{ville.id}}>{{ville.nomville}}</option>
+                                        </select> 
+                                        <div [hidden]="ville.valid || ville.pristine" class="alert alert-danger">
+                                            La ville est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Quartier *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" placeholder="Saisissez le quartier"
+                                                    class="form-control p-0 border-0" name="quartier" ngModel  #quartier="ngModel" required minlength="5" maxlength="30">
+                                        <div [hidden]="quartier.valid || quartier.pristine" class="alert alert-danger">
+                                            Le quartier est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Nom d'utilisateur *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" placeholder="Saisissez le nom d'utilisateur"
+                                                    class="form-control p-0 border-0" name="username" ngModel  #username="ngModel" required minlength="3" maxlength="20">
+                                        <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+                                            Le nom d'utilisateur est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Pièce d'identité *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input #filepiece type="file" accept=".jpg, .jpeg, .png" placeholder="Choisir une image"
+                                                    class="form-control p-0 border-0" name="piece" ngModel #piece="ngModel" (change)="previewpiece(filepiece.files)" required>
+                                        <div [hidden]="piece.valid || piece.pristine" class="alert alert-danger">
+                                            La pièce d'identité est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span style="color:red;" *ngIf="messagePiece">{{messagePiece}}</span>
+                                    <img [src]="imgURLPiece" height="200" *ngIf="imgURLPiece">
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="form-group mb-4">
+                                <div class="col-sm-12 align-button">
+                                    <button class="btn btn-orange" type="submit" [disabled]="AjoutForm.form.invalid">Ajouter</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-lg-1 col-lg-md-1 col-xlg-1 col-md-12"></div> -->
+    </div>
+    </div>
+</div>
+

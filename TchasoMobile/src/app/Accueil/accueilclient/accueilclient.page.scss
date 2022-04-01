@@ -1,0 +1,31 @@
+ion-content, ion-toolbar{
+    --background:rgb(212, 210, 208);
+}
+
+.bare-grise{
+    height: 40px; 
+    width: 100%; 
+    margin-top: -500px auto; 
+    background-color:  #684f0e;
+}
+.icon-person{
+    float: right; 
+    font-size: 25px;
+    color: #684f0e;
+}
+
+.taille{
+    width: 100%;
+}
+
+ion-card{
+    margin: 15px 0px 0px 0px;
+    width: 100%;
+}
+.imgC{
+    height: 60px;
+}
+.nomP{
+    color: #684f0e;
+    font-weight: bold;
+}

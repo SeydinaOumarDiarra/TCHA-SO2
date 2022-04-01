@@ -1,0 +1,54 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center sous-header">
+            <div class="row col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-sm-4 col-md-6 col-xs-12">
+                    <a href="villes">
+                     <i class="fas fa-chevron-left" style="font-weight: bold; font-size: 25px; color: #684f0e;" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12" style="float: left;">
+                    <h4 class="page-title">MODIFICATION VILLE</h4>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex"> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+    <div class="row justify-content-center" style="margin: 0 auto;">
+
+        <div class="col-lg-3 col-xlg-3 col-md-12"></div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-6 col-xlg-3 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form #UpdateForm="ngForm" (ngSubmit)="updateVille()" autocomplete="off" class="form-horizontal form-material">
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Nom Ville</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input type="text" placeholder="Saisissez une ville"
+                                                class="form-control p-0 border-0" name="nom" [(ngModel)]="villes.nomville" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <div class="col-sm-12 align-button">
+                                    <button class="btn btn-orange" type="submit" [disabled]="UpdateForm.invalid">Modifier</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xlg-3 col-md-12"></div>
+    </div>
+</div>
+</div>
+

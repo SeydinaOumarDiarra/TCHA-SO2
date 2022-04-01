@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button>
+        <ion-menu-button ></ion-menu-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <app-connect></app-connect>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  
+  <ion-row>
+    <ion-slides [options]="slideOptsa" style="width: 100%">
+      <ion-slide style="width: 100%">
+          <img src="../../../assets/images/tcha_so_image_1.jpg" style="width: 100%;">
+      </ion-slide>
+      <ion-slide style="width: 100%;">
+        <img src="../../../assets/images/tcha_so_image_2.jpg" style="width: 100%;">
+      </ion-slide>
+      <ion-slide style="width: 100%;">
+        <img src="../../../assets/images/tcha_so_image_3.jpg" style="width: 100%;">
+      </ion-slide>
+    </ion-slides>
+  </ion-row>
+  <ion-row class="bare-grise">
+    <p style="color: white; margin: 10px auto auto 50px;">Services TCHA-SO</p>
+  </ion-row>
+  <ion-row>
+    <ion-col size="large" size="6"  *ngFor="let liste of listeServices">
+      <a (click)="showServices(liste)" style="text-align: center">
+        <ion-card>
+          <ion-card-content>
+            <ion-img class="imgC" src="{{iconimage}} + {{liste.id}}"></ion-img>
+            <p class="nomP">{{liste.nomser}}</p>
+          </ion-card-content>
+        </ion-card>
+      </a>
+    </ion-col>
+  </ion-row>
+  
+</ion-content>

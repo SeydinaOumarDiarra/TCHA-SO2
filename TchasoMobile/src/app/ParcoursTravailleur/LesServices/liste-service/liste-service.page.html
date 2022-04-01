@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <app-connectnotify></app-connectnotify>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img src="../../../assets/images/entete1.png" alt="img-entete" class="img-entete"></ion-img>
+  <div class="infos">
+    <ion-card>
+      <ion-grid>
+        <ion-row>
+            <h5><b>Services TCHA-SO</b></h5>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+  <div class="listeservice">
+    <ion-row>
+      <ion-col size="large" size="6"  *ngFor="let liste of listeServices">
+        <a (click)="showServices(liste)" style="text-align: center">
+          <ion-card >
+            <ion-card-content>
+              <ion-img class="imgC" src="{{iconimage}} + {{liste.id}}"></ion-img>
+              <p class="nomP">{{liste.nomser}}</p>
+            </ion-card-content>
+          </ion-card>
+        </a>
+      </ion-col>
+    </ion-row>
+  </div>
+  
+</ion-content>

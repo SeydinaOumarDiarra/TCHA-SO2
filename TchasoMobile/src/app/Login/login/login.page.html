@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+  <ion-img src="../../../assets/images/entete1.png" alt="img-entete" class="img-entete"></ion-img>
+  <ion-img src="../../../assets/images/logo.png" alt="img-logo" class="img-logo"></ion-img>
+
+    <h4 style="text-align: center; font-size: 25px; color: #684f0e;"><b>Login</b></h4>
+
+  <form #form="ngForm" novalidate>
+    <ion-card>
+      <ion-list>
+        <ion-item class="box1">
+          <ion-input required name="username" type="text" #username="ngModel" [(ngModel)]="user.username" placeholder="Nom d'utilisateur"></ion-input>
+          <ion-icon name="person"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-input required name="password" type="password" #password="ngModel" [(ngModel)]="user.password" placeholder="Mot de passe"></ion-input>
+          <ion-icon name="key"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+    <a (click)="reset()" style="margin: 0px 0px 0px 110px; font-size: 14px; color: #684f0e;">Mot de passe oublié ?</a>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" (click)="onSignIn()" class="btn-inscription">S'inscrire</ion-button>
+      </ion-col>
+     
+      <ion-col size="6">
+        <ion-button type="submit" [disabled]="form.invalid" color="warning" expand="block" (click)="onLogin(form)">Se connecter</ion-button>
+      </ion-col>
+    </ion-row> 
+  </form>
+</ion-content>

@@ -1,0 +1,79 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center sous-header">
+            <div class="row col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-sm-4 col-md-6 col-xs-12">
+                    <a href="specialites">
+                     <i class="fas fa-chevron-left" style="font-weight: bold; font-size: 25px; color: #684f0e;" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12" style="float: left;">
+                    <h4 class="page-title">AJOUT SPECIALITE</h4>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex"> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+    <div class="row justify-content-center" style="margin: 0 auto;">
+
+        <div class="col-lg-3 col-xlg-3 col-md-12"></div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-6 col-xlg-3 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form #AjoutForm="ngForm" (ngSubmit)="AjoutSpecialite(AjoutForm)" autocomplete="off" class="form-horizontal form-material">
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Services *</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <select  class="form-control p-0 border-0" name="service" id="singleSelect" ngModel #service="ngModel" required>
+                                        <option value="">---Sélectionner un service---</option> 
+                                        <option *ngFor="let service of listeService" value={{service.id}}>{{service.nomser}}</option>
+                                    </select>
+                                    <div [hidden]="service.valid || service.pristine" class="alert alert-danger">
+                                        Le service est obligatoire
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Nom spécialité *</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input type="textarea" placeholder="Saisissez la spécialité"
+                                                class="form-control p-0 border-0" name="nom" ngModel #nom="ngModel" required minlength="5" maxlength="50">
+                                    <div [hidden]="nom.valid || nom.pristine" class="alert alert-danger">
+                                        Le nom est obligatoire
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">Description Spécialité *</label>
+                                <div class="col-md-12 border-bottom p-0">
+                                    <input type="textarea" placeholder="Saisissez une description"
+                                                class="form-control p-0 border-0" name="description" ngModel #description="ngModel" required>
+                                    <div [hidden]="description.valid || description.pristine" class="alert alert-danger">
+                                        La description est obligatoire
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <div class="col-sm-12 align-button">
+                                    <button class="btn btn-orange" type="submit" [disabled]="AjoutForm.form.invalid">Ajouter</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-xlg-3 col-md-12"></div>
+    </div>
+</div>
+</div>
+

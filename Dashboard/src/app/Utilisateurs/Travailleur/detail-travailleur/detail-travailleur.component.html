@@ -1,0 +1,157 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center sous-header">
+            <div class="col-lg-1 col-sm-1 col-md-1 col-xs-12">
+                <a [routerLink]="['/utilisateurs']">
+                    <b>
+                        <i class="fas fa-chevron-left" style="font-weight: bold; font-size: 25px; color: #684f0e;" aria-hidden="true"></i>
+                    </b>
+                </a>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                <h4 class="page-title">DETAIL TRAVAILLEUR</h4>
+            </div>
+            <div class="col-lg-6 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex">
+                    <ol class="breadcrumb ms-auto">
+                        <li> 
+                            <a (click)="show(travailleur.id)" class="btn btn-orange">
+                                <b>{{nbredemande}} demande (s)</b>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-4 col-xlg-3 col-md-12">
+                <div class="white-box">
+                    <div class="user-bg"> <img width="100%" alt="user" src="../../assets/plugins/images/infos.png">
+                        <div class="overlay-box">
+                            <div class="user-content">
+                                <a href="javascript:void(0)"><img src="{{photo}} + {{travailleur?.id}}"
+                                        class="thumb-lg img-circle" alt="photo"></a>
+                                <h4 class="text-white mt-2">{{travailleur?.prenom}} {{travailleur?.nom}}</h4>
+                                <h5 class="text-white mt-2">{{travailleur?.numWhasapp}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-btm-box mt-5 d-md-flex">
+                        <div class="col-md-6 col-sm-6 text-center">
+                            <button class="btn btn-orange" style="background-color: #684f0e; color: white;" [routerLink]="['/modifierclient', travailleur?.id]">
+                                <i class="fa fa-edit" aria-hidden="true"></i> Modifier</button>
+                        </div>
+                        <div class="col-md-6 col-sm-6 text-center" *ngIf="travailleur?.etat === 'actif'">
+                            <button class="btn btn-orange" style="background-color: orangered; color: white;" (click)="desactiver(travailleur.id)">
+                                <i class="fa fa-trash" aria-hidden="true"></i> Désactiver</button>
+                        </div>
+                        
+                        <div class="col-md-6 col-sm-6 text-center" *ngIf="travailleur?.etat === 'inactif'">
+                            <button class="btn btn-orange" style="background-color: rgb(255, 230, 0); color: black;" (click)="activer(travailleur.id)">
+                                <i class=" fas fa-check" aria-hidden="true"></i> Activer</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="white-box" style="justify-content: center; margin: 0 auto;">
+                    <h4>Pièce d'identité  <a target="_blank" href="{{piece}} + {{travailleur?.id}}"><i style="float: right; color: #684f0e;" class="fa fa-download" aria-hidden="true"></i></a></h4>
+                    <img width="100%" alt="user" src="{{piece}} + {{travailleur?.id}}"  style="height: 160px;">                    
+                </div>
+            </div>
+            <!-- Column -->
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="form-horizontal form-material">
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">NOM COMPLET</label>
+                                <div class="col-md-12 border-bottom p-0">{{travailleur?.prenom}} {{travailleur?.nom}}</div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="example-email" class="col-md-12 p-0">SPECIALITE</label>
+                                <div class="col-md-12 border-bottom p-0">{{travailleur?.specialite.nomspe}}</div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="example-email" class="col-md-12 p-0">GENRE</label>
+                                <div class="col-md-12 border-bottom p-0">{{travailleur?.genre}}</div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="example-email" class="col-md-12 p-0">TELEPHONE</label>
+                                <div class="col-md-12 border-bottom p-0">{{travailleur?.numWhasapp}}</div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">ADRESSE</label>
+                                <div class="col-md-12 border-bottom p-0">{{travailleur?.ville.nomville}}, {{travailleur?.quartier}}</div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="example-email" class="col-md-12 p-0">ETAT</label>
+                                <div class="col-md-12 border-bottom p-0">{{travailleur?.etat}} </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">LOGIN</label>
+                                <div class="col-md-12 border-bottom p-0">{{travailleur?.login}}</div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <!-- <div class="col-sm-12 align-button">
+                                    <button class="btn btn-warning" type="submit">Modifier</button>
+                                </div> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+
+         <!-- Affichage competences du travailleur -->
+         <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="white-box">
+                    <div class="d-md-flex mb-3">
+                        <div class="row col-md-12 col-lg-12 col-sm-12">
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                                <h3 class="box-title mb-0">Compétences de {{travailleur?.prenom}} {{travailleur?.nom}}</h3>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                                <button [routerLink]="['/ajoutcompetence', travailleur?.id]" class="btn btn-orange" style="float: right;">Ajouter une compétence</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table no-wrap">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0"><b>Nom compétence</b></th>
+                                    <th class="border-top-0"><b>Description</b></th>
+                                    <th class="border-top-0"><b>Action</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let c of competences">
+                                    <td class="txt-oflo">{{c.nomCom}}</td>
+                                    <td class="txt-oflo">{{c.description}}</td>
+                                    <td>
+                                        <span class="text-success alignement">
+                                            <a > <i class="fa fa-edit"  style="color: #f5bb20;" aria-hidden="true"></i></a>
+                                            <a><i style="color: red;" class="fa fa-trash" aria-hidden="true" onclick ="return(confirm('Etes-vous certain de vouloir supprimer ce service ?'));"></i></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>

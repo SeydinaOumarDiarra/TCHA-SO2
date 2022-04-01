@@ -1,0 +1,111 @@
+
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center sous-header">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">ACCUEIL</h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex"> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-12">
+                <div class="white-box analytics-info">
+                    <h3 class="box-title">Total Clients</h3>
+                    <ul class="list-inline two-part d-flex align-items-center mb-0">
+                        <li>
+                            <div id="sparklinedash"><canvas width="67" height="30"
+                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                            </div>
+                        </li>
+                        <li class="ms-auto"><span class="counter" style="color: #684f0e;"><b>{{nbreclient}}</b></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="white-box analytics-info">
+                    <h3 class="box-title">Total Travailleurs</h3>
+                    <ul class="list-inline two-part d-flex align-items-center mb-0">
+                        <li>
+                            <div id="sparklinedash2"><canvas width="67" height="30"
+                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                            </div>
+                        </li>
+                        <li class="ms-auto"><span class="counter" style="color: #f5bb20;"><b>{{nbretravailleur}}</b></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="white-box analytics-info">
+                    <h3 class="box-title">Total Demandes effectuées</h3>
+                    <ul class="list-inline two-part d-flex align-items-center mb-0" style="color: #f5bb20;">
+                        <li>
+                            <div id="sparklinedash3"><canvas width="67" height="30"
+                                    style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
+                            </div>
+                        </li>
+                        <li class="ms-auto"><span class="counter" style="color: #000000;"><b>{{nbredemande}}</b></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row"></div>
+        <div class="row justify-content-center" style="margin: 0 auto;">
+            <!-- Mettre ici le contenu de la page -->
+            <div class="row">
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="white-box">
+                        <div class="d-md-flex mb-3">
+                            <div class="row col-md-12 col-lg-12 col-sm-12">
+                                <div class="col-md-6 col-lg-6 col-sm-6">
+                                    <h3 class="box-title mb-0">Liste des travailleurs en attentes</h3>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-6">
+                                    <form role="search" >
+                                        <a href="" class="active">
+                                            <i class="fa fa-search" style="color: #f5bb20;"></i>
+                                        </a>
+                                        <input type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Rechercher..." class="form-control mt-0">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table no-wrap">
+                                <thead>
+                                    <tr>
+                                        <th class="border-top-0"><b>#</b></th>
+                                        <th class="border-top-0"><b>Nom</b></th>
+                                        <th class="border-top-0"><b>Prenom</b></th>
+                                        <th class="border-top-0"><b>Genre</b></th>
+                                        <th class="border-top-0"><b>Action</b></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let liste of travAttente| filter:searchText">
+                                        <td class="txt-oflo"><img src="{{photo}} + {{liste.id}}" style="height: 25px;"></td>
+                                        <td class="txt-oflo">{{liste.nom}}</td>
+                                        <td class="txt-oflo">{{liste.prenom}}</td>
+                                        <td class="txt-oflo">{{liste.genre}}</td>
+                                        <td>
+                                            <span class="text-success alignement">
+                                                <a [routerLink]="['/detailtravailleur', liste.id]"><i style="color: #684f0e;" class="fas fa-info-circle" aria-hidden="true"></i></a>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

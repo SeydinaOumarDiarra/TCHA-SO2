@@ -1,0 +1,10 @@
+<ion-button slot="primary" [routerLink]="['/client-notify', notifyClient]">
+  <b class="icon-notify"><ion-icon name="notifications"></ion-icon></b>
+  <ion-badge style="background-color: brown;" *ngIf="nbreNotify !== 0">{{nbreNotify}}</ion-badge>
+  <ion-badge style="background-color:darkslategray;" *ngIf="nbreNotify === 0">{{nbreNotify}}</ion-badge>
+</ion-button>
+
+<ion-button slot="secondary">
+ <a routerLink="/profil-client"><b class="icon-notify"><ion-icon name="person"></ion-icon></b></a>
+</ion-button>
+  

@@ -1,0 +1,72 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center sous-header">
+            <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">GESTION CORBEILLE</h4>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+    <div class="row justify-content-center" style="margin: 0 auto;">
+        <!-- Mettre ici le contenu de la page -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul class="navbar-nav mr-auto mt-5 mt-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="corbeil"><b style="font-size: 18px;">Services</b></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="corbeil-specialite"><b style="font-size: 18px;">Spécialités</b></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="corbeil-ville"><b style="font-size: 18px; color: #f5bb20;">Villes</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="corbeil-utilisateur"><b style="font-size: 18px;">Utilisateurs</b></a>
+                  </li>
+              </ul>
+            </div>
+        </nav>
+        <div class="white-box">
+            <div class="d-md-flex mb-3">
+                <div class="row col-md-12 col-lg-12 col-sm-12">
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        <h3 class="box-title mb-0">Liste des villes</h3>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        <form role="search" >
+                            <a href="" class="active2">
+                                <i class="fa fa-search" style="color: #f5bb20;"></i>
+                            </a>
+                            <input type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Rechercher..." class="form-control mt-0">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table no-wrap">
+                    <thead>
+                        <tr>
+                            <th class="border-top-0"><b>#</b></th>
+                            <th class="border-top-0"><b>Nom</b></th>
+                            <th class="border-top-0"><b>Action</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let liste of listeVilles | filter:searchText">
+                            <td class="txt-oflo">{{liste.id}}</td>
+                            <td class="txt-oflo">{{liste.nomville}}</td>
+                            <td>
+                                <span class="text-success alignement">
+                                    <a (click)="alertConfirmation(liste.id)"><i style="color: #f5bb20;" class="far fa-window-restore" aria-hidden="true"></i></a>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

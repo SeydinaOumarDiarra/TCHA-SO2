@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <app-connect></app-connect>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-row class="bare-grise">
+      <p style="color: white; margin: 10px 0px 0px 50px;">Mes notifications</p>
+    </ion-row>
+  
+    <ion-list *ngFor="let noti of notify" (click)="lirenotify(noti.id)">
+      <ion-item *ngIf="noti.etat == 'actif'">
+        <ion-avatar slot="start">
+          <ion-img src="{{image}} + {{noti?.travailleur.id}}"></ion-img>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{noti?.travailleur.nom}} {{noti?.travailleur.prenom}}</h2>
+          <h3>
+            {{noti?.travailleur.specialite.nomspe}}
+            <span *ngIf = "noti.statutdemandeclient === 'non_lu'" class="alertdanger">non lu</span>
+            <span *ngIf = "noti.statutdemandeclient === 'lu'" class="alertsuccess">lu</span>
+          </h3>
+        </ion-label>
+        
+      </ion-item>
+    </ion-list>
+    <ion-fab vertical="center" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="accueil()">
+        <ion-icon name="home"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+</ion-content>

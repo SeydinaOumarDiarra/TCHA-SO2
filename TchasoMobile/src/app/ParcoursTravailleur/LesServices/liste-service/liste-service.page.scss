@@ -1,0 +1,31 @@
+.img-entete{
+    width: 180px;
+    --background: no-repeat cover fixed;
+}
+.infos {
+    height: 40%;
+    margin-top: -80px;
+    text-align: center;
+    color: black;
+    --background: transparent;
+  }
+
+  .taille{
+    width: 100%;
+}
+
+ion-card{
+    margin: 15px 0px 0px 0px;
+    width: 100%;
+}
+.imgC{
+    height: 60px;
+}
+.nomP{
+    color: #684f0e;
+    font-weight: bold;
+}
+
+.listeservice{
+    margin-top: -150px;
+}

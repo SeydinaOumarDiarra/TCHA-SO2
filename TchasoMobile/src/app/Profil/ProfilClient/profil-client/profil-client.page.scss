@@ -1,0 +1,59 @@
+.header {
+    height: 120px;
+    background-color: #684f0e;
+    width: 100%;
+    padding-top: 1px;
+}
+.header h2 {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    padding: -10px 10px 0px 10px;
+}
+.followings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.followings p {
+    color: black;
+    margin: 8px 0px 0px 0px;
+}
+.img-box {
+    border-radius: 50%;
+    overflow: hidden;
+    height: 130px;
+    width: 130px;
+}
+.border-white {
+    border: #684f0e solid 4px;
+    border-radius: 50%;
+    width: fit-content;
+}
+.flex {
+    display: flex;
+    justify-content: center;
+    margin-top: -68px;
+}
+.tweet {
+    margin-top: -10px!important;
+}
+.tweet ion-label {
+    line-height: 1!important;
+    font-size: 15px;
+    margin: 6px 0px 6px 0px!important;
+    min-height: 34px;
+}
+
+ion-button{
+    --border-radius: 0px 50px 50px 0px;
+    --display: block;
+    --margin: 0 auto 0px;
+    --background: #684f0e;
+    font-size: 15px;
+    text-transform: lowercase;
+}

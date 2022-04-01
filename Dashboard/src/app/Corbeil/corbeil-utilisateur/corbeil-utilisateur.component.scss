@@ -1,0 +1,74 @@
+.sous-header{
+    padding-top: 20px;
+}
+.t{
+    background-color: black;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+hr{
+    
+    color: white;
+    height: 3px;
+    background-color: white;
+    font-weight: 900px;
+}
+li:hover{
+    
+    border-bottom: 1px solid #f5bb20;
+    padding: 5px;
+    color: #f5bb20;
+    transition: 0.5s;
+    
+}
+
+li a:hover{
+    color: #f5bb20;
+}
+
+
+
+
+form{
+    display: flex;
+    justify-content: space-between;
+
+}
+form input {
+    width: 50%;
+    border-radius: 20px;
+    -webkit-transition: width 0.6s ease-in-out;
+    transition: width 0.6s ease-in-out;
+  }
+
+  input[type=text]:focus {
+    width: 100%;
+  }
+  .active2{
+      position: relative;
+      left: 92%;
+      top: 7px;
+  }
+
+  .cls {
+    width: 95%;
+    text-align: center;
+    margin: auto;
+}
+
+.cls1 {
+    margin-top: 50px;
+}
+
+.bta {
+    margin: 2%;
+    width: 12%;
+    height: 40px;
+    background: orange;
+    border: none;
+    color: white;
+    font-weight: bold;
+}

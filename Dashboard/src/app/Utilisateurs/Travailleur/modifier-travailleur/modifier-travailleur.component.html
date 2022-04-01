@@ -1,0 +1,137 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center sous-header">
+            <div class="row col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                <div class="col-lg-4 col-sm-4 col-md-6 col-xs-12">
+                    <a href="utilisateurs">
+                     <i class="fas fa-chevron-left" style="font-weight: bold; font-size: 25px; color: #684f0e;" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12" style="float: left;">
+                    <h4 class="page-title">MODIFICATION TRAVAILLEUR</h4>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex"> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+    <div class="row justify-content-center" style="margin: 0 auto;">
+
+        <div class="col-lg-1 col-lg-md-1 col-xlg-1 col-md-12"></div>
+            <div class="col-lg-10 col-lg-md-10 col-xlg-10 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form  #UpdateForm="ngForm" (ngSubmit)="updateTravailleur()" autocomplete="off" class="form-horizontal form-material row">
+                            <div class="col-lg-6 col-xlg-6 col-md-12">
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Nom *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" placeholder="Saisissez le nom"
+                                                    class="form-control p-0 border-0" name="nom"  [(ngModel)]="travailleur.nom" required>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Prénom *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" placeholder="Saisissez le prénom"
+                                                    class="form-control p-0 border-0" name="prenom"  [(ngModel)]="travailleur.prenom" required>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Genre *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <select  class="form-control p-0 border-0" name="genre" id="singleSelect" [(ngModel)]="travailleur.genre" required>
+                                            <option value="">---Sélectionner un genre---</option> 
+                                            <option  value="Homme">Homme</option>
+                                            <option  value="Femme">Femme</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Spécialité *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <select  class="form-control p-0 border-0" name="specialite" [(ngModel)]="travailleur.specialite.id" required>
+                                            <option value="">---Sélectionner une spécialité---</option> 
+                                            <option *ngFor="let specialite of listeSpecialite" value={{specialite.id}}>{{specialite.nomspe}}</option>
+                                        </select> 
+                                       
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Photo *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input #filephoto type="file" accept=".jpg, .jpeg, .png" placeholder="Choisir une image" (change)="preview(filephoto.files)"
+                                                    class="form-control p-0 border-0" name="photo" [(ngModel)]="travailleur.photo" required>
+                                                    <!-- (change)="preview(filephoto.files)"  -->
+                                    </div>
+                                </div>
+                                <div>
+                                    <span style="color:red;" *ngIf="messagePhoto">{{messagePhoto}}</span>
+                                    <img [src]="imgURLPhoto" height="200" *ngIf="imgURLPhoto">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-xlg-6 col-md-12">
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Téléphone *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" placeholder="Saisissez le téléphone"
+                                                    class="form-control p-0 border-0" name="numWhasapp" [(ngModel)]="travailleur.numWhasapp" required>
+                                       
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Ville *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <select  placeholder="Saisissez la ville"
+                                                    class="form-control p-0 border-0" name="ville" [(ngModel)]="travailleur.ville.id" required>
+                                            <option value="">---Sélectionner une ville---</option> 
+                                            <option *ngFor="let ville of listeVille" value={{ville.id}}>{{ville.nomville}}</option>
+                                        </select> 
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Quartier *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input type="text" placeholder="Saisissez le quartier"
+                                                    class="form-control p-0 border-0" name="quartier" [(ngModel)]="travailleur.quartier" required>
+                                    </div>
+                                </div>                                
+                                <div class="form-group mb-4">
+                                    <label class="col-md-12 p-0">Pièce d'identité *</label>
+                                    <div class="col-md-12 border-bottom p-0">
+                                        <input #filepiece type="file" accept=".jpg, .jpeg, .png" placeholder="Choisir une image"
+                                                    class="form-control p-0 border-0" name="piece"[(ngModel)]="travailleur.pieceiden" (change)="previewpiece(filepiece.files)"   required>
+                                       
+                                                    <!-- (change)="previewpiece(filepiece.files)" -->
+                                                </div>
+                                </div>
+                                <div>
+                                    <span style="color:red;" *ngIf="messagePiece">{{messagePiece}}</span>
+                                    <img [src]="imgURLPiece" height="200" *ngIf="imgURLPiece">
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="form-group mb-4">
+                                <div class="col-sm-12 align-button">
+                                    <button class="btn btn-orange" type="submit" [disabled]="UpdateForm.invalid">Modifier</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-lg-1 col-lg-md-1 col-xlg-1 col-md-12"></div> -->
+    </div>
+    </div>
+</div>
+

@@ -1,0 +1,85 @@
+.icon-person{
+    margin: 0px 0px 0px 120px; 
+    font-size: 25px;
+    color: #684f0e;
+}
+.watts ion-fab-button{
+    --background: transparent;
+    margin-bottom: 3vh;
+    --background-hover: none;
+    border-radius: 50%;
+    margin-top: -250%;
+    width: 40px;
+    height: 40px;
+}
+.pencil ion-fab-button{
+    --background: linear-gradient(to bottom, #f5bb20, #f5bb20, #f5bb20, #f5bb20, #f5bb20, #f5bb20, #f5bb20);;
+    margin-bottom: 3vh;
+    --background-hover: none;
+    border-radius: 50%;
+    margin-top: -100%;
+    width: 40px;
+    height: 40px;
+}
+ion-fab {
+    ion-fab-button {
+        --background: linear-gradient(to bottom, #684f0e, #684f0e, #684f0e, #684f0e, #f5bb20, #f5bb20, #f5bb20);
+        // --background: var(--ion-color-white);
+        margin-bottom: 3vh;
+        --background-hover: none;
+        border: 1vh solid var(--ion-color-white);
+        border-radius: 50%;
+        margin-top: 300%;
+    }
+}
+
+.header {
+    height: 120px;
+    background-color: #684f0e;
+    width: 100%;
+    padding-top: 1px;
+}
+.header h2 {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    padding: -10px 10px 0px 10px;
+}
+.followings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.followings p {
+    color: black;
+    margin: 8px 0px 0px 0px;
+}
+.img-box {
+    border-radius: 50%;
+    overflow: hidden;
+    height: 130px;
+    width: 130px;
+}
+.border-white {
+    border: #684f0e solid 4px;
+    border-radius: 50%;
+    width: fit-content;
+}
+.flex {
+    display: flex;
+    justify-content: center;
+    margin-top: -68px;
+}
+.tweet {
+    margin-top: -10px!important;
+}
+.tweet ion-label {
+    line-height: 1!important;
+    font-size: 15px;
+    margin: 6px 0px 6px 0px!important;
+    min-height: 34px;
+}

@@ -1,0 +1,47 @@
+<ion-content class="arrierePlan" >
+  
+  <ion-row style="background-color: #f5bb20;">
+    <ion-col size="10">
+      <ion-row>
+        <h4>Modifier mot de passe</h4>
+      </ion-row>
+    </ion-col>
+    <ion-col size="2"> <a (click)="close()"><ion-icon name="close" class="close"></ion-icon></a></ion-col>
+  </ion-row>
+  <form #form="ngForm"  (ngSubmit)="modifierpwd(form)" novalidate>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating" color="black"><b>Ancien mot de passe</b></ion-label>
+        <ion-input [(ngModel)]="mp.apass" name="apass" type="password" #apass="ngModel" required></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="apass.invalid && apass.touched">
+            L'ancien mot de passe est obligatoire
+      </ion-text>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating" color="black"><b>Nouveau mot de passe</b></ion-label>
+        <ion-input [(ngModel)]="mp.npass" name="npass" type="password" #npass="ngModel" required></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="npass.invalid && npass.touched">
+            Le nouveau mot de passe est obligatoire
+      </ion-text>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating" color="black"><b>Confirmer mot de passe</b></ion-label>
+        <ion-input [(ngModel)]="mp.cpass" name="cpass" type="password" #cpass="ngModel" required></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="cpass.invalid && cpass.touched">
+            Confirmation mot de passe est obligatoire
+      </ion-text>
+    </ion-list>
+
+    <ion-row>
+      <ion-col>
+        <ion-button [disabled]="form.invalid" type="submit" expand="block">Modifier</ion-button>
+      </ion-col>
+    </ion-row>
+   
+  </form>
+</ion-content>

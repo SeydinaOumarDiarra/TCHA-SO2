@@ -1,0 +1,25 @@
+.bare-grise{
+    height: 40px; 
+    width: 100%; 
+    margin-top: -500px auto; 
+    background-color:  #684f0e;
+}
+
+.pencil ion-fab-button{
+    --background: linear-gradient(to bottom, #f5bb20, #f5bb20, #f5bb20, #f5bb20, #f5bb20, #f5bb20, #f5bb20);;
+    margin-bottom: 3vh;
+    --background-hover: none;
+    border-radius: 50%;
+    margin-top: -100%;
+    width: 40px;
+    height: 40px;
+}
+.delete ion-fab-button{
+    --background: linear-gradient(to bottom, #f54b20, #f54b20, #f54b20, #f54b20, #f54b20, #f54b20, #f54b20);;
+    margin-bottom: 3vh;
+    --background-hover: none;
+    border-radius: 50%;
+    margin-top: 50%;
+    width: 40px;
+    height: 40px;
+}

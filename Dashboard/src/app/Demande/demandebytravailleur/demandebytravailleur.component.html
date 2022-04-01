@@ -1,0 +1,41 @@
+<div class="white-box">
+    <div class="d-md-flex mb-3">
+        <div class="row col-md-12 col-lg-12 col-sm-12">
+            <div class="col-md-6 col-lg-6 col-sm-6">
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <form role="search" >
+                    <a href="" class="active">
+                        <i class="fa fa-search" style="color: #f5bb20;"></i>
+                    </a>
+                    <input type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Rechercher..." class="form-control mt-0">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table no-wrap">
+            <thead>
+                <tr>
+                    <th class="border-top-0"><b>DATE</b></th>
+                    <th class="border-top-0"><b>STATUT</b></th>
+                    <th class="border-top-0"><b>CLIENT</b></th>
+                    <th class="border-top-0"><b>ETAT DEMANDE</b></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let liste of demande| filter:searchText | paginate : {itemsPerPage : 5, currentPage: p}">
+                    <td class="txt-oflo">{{liste?.datedemande| date: 'dd-MM-Y à H:mm'}}</td>
+                    <td class="txt-oflo"> 
+                        <b *ngIf="liste.isaccept == false" style="color: brown;">non accepté</b>
+                        <b *ngIf="liste.isaccept == null" style="color: rgb(235, 163, 8);">en cours</b>
+                        <b *ngIf="liste.isaccept == true" style="color: rgb(42, 165, 128);">accepté</b>
+                    </td>
+                    <td class="txt-oflo">{{liste.client.nom}} {{liste.client.prenom}}</td>
+                    <td class="txt-oflo">{{liste.etat}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <pagination-controls style="margin-left: 50%; background-color: #684f0e;" (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <app-connectnotify></app-connectnotify>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="header">
+    <h2>{{travailleur?.prenom}} {{travailleur?.nom}}</h2>
+  </div>
+  <div class="space-between">
+  </div>
+  <div class="flex">
+    <div class="border-white">
+      <div class="img-box">
+        <img src="{{image}} + {{travailleur?.id}}">
+      </div>
+    </div>
+  </div>
+  <ion-row>
+    <ion-col size="10">
+      <ion-card>
+        <ion-item lines="none">
+          <ion-avatar slot="start">
+            <img src="{{image}} + {{travailleur?.id}}" />
+          </ion-avatar>
+          <ion-label>
+            <h2 style="font-size: 12px;"><b>{{travailleur?.prenom}} {{travailleur?.nom}}</b></h2>
+            <p>{{travailleur?.specialite.nomspe}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none" class="tweet">
+          <ion-label text-wrap>{{travailleur?.ville.nomville}}, {{travailleur?.quartier}}</ion-label>
+        </ion-item>
+      </ion-card>
+
+      
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-card-header>
+      <ion-card-title style="font-size: 25px;  font-weight: bold;">Compétences</ion-card-title>
+    </ion-card-header>
+  </ion-row>
+  <ion-row *ngFor="let c of competences">
+    <ion-col size="12">
+        <ion-card-header>
+          <ion-card-title>
+           
+            <p style="font-size: 20px; color: #684f0e;">
+              <ion-icon name="checkmark-outline" style="font-weight: bold;"></ion-icon>
+              {{c.nomCom}}
+            </p>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{c.description}}
+        </ion-card-content>
+    </ion-col>
+  </ion-row>
+ 
+  <ion-fab vertical="center" horizontal="end" slot="fixed" class="watts">
+      <ion-fab-button  href="https://wa.me/+223{{travailleur?.numWhasapp}}?text=Bonjour,%je%20suis%20intéressé%20par%20votre%20service">
+          <img src="../../../assets/icon/wattsapp.png" style="width: 40px; height: 40px;" (click)="contact()"/>
+      </ion-fab-button>
+  </ion-fab>
+  <!-- <ion-fab vertical="center" horizontal="end" slot="fixed" class="pencil">
+    <ion-fab-button  (click)="addDemande(travailleur?.id)">
+      <img src="../../../assets/icon/pencil.png" style="width: 35px; height: 35px;"/>
+    </ion-fab-button>
+  </ion-fab> -->
+<ion-fab vertical="center" horizontal="end" slot="fixed" class="home">
+    <ion-fab-button  [routerLink]="['/accueil']">
+      <ion-icon name="home"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+ 
+  
+</ion-content>
+

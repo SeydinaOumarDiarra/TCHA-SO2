@@ -1,0 +1,51 @@
+<ion-content class="arrierePlan" >
+  
+  <ion-row style="background-color: #f5bb20;">
+    <ion-col size="10">
+      <ion-row>
+        <ion-col size="2">
+          <ion-icon name="star-outline" style="height: 20px; width: 20px;"></ion-icon>
+        </ion-col>
+        <ion-col size="10">
+          <b style="font-size: 15px;">Notation</b>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+    <ion-col size="2"> <a (click)="close()"><ion-icon name="close" class="close"></ion-icon></a></ion-col>
+  </ion-row>
+  <form #form="ngForm"  (ngSubmit)="addNote(form)" novalidate>
+    <ion-list>
+      <ion-row>
+        <p style="margin-left: 15px;">Donner une échelle de 1 à 5</p>
+      </ion-row>
+      <ion-radio-group [(ngModel)]="notation.note" name="note" #note="ngModel" required>
+        <ion-row>
+          <ion-col size="1"></ion-col>
+          <ion-col size="2">
+            <b>1</b> <ion-radio  color="warning" value="1"></ion-radio>
+          </ion-col>
+          <ion-col size="2">
+            <b>2</b><ion-radio  color="warning" value="2"></ion-radio>
+          </ion-col>
+          <ion-col size="2">
+            <b>3</b><ion-radio  color="warning" value="3"></ion-radio>
+          </ion-col>
+          <ion-col size="2">
+            <b>4</b><ion-radio  color="warning" value="4"></ion-radio>
+          </ion-col>
+          <ion-col size="2">
+            <b>5</b><ion-radio  color="warning" value="5"></ion-radio>
+          </ion-col>
+          <ion-col size="1"></ion-col>
+        </ion-row>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-row>
+      <ion-col>
+        <ion-button [disabled]="form.invalid" type="submit" expand="block">Noter</ion-button>
+      </ion-col>
+    </ion-row>
+   
+  </form>
+</ion-content>

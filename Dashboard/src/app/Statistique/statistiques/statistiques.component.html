@@ -1,0 +1,168 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<script src="node_modules/chart.js/Chart.min.js"></script>
+<script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center sous-header">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">Statistiques TCHA-SO</h4>
+            </div>
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex"> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="white-box">
+            <div class="d-md-flex mb-3">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ms-auto">
+                    <i class="fa fa-chart-line" style="font-weight: bold; font-size: 50px; margin: 0 auto;" aria-hidden="true"></i>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ms-auto">
+                    <label>Afficher par : </label>
+                    <select class="form-select shadow-none row border-top" (change)="stat($event)">
+                        <option>Graphe</option>
+                        <option>Tableaux</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 col-sm-10"></div>
+            <div class="col-lg-2 col-sm-2">
+                <ol class="breadcrumb ms-auto" *ngIf="tableau === false">
+                    <li> <a (click)="pdfGrahe()" class="btn btn-orange ">
+                        <i class="fas fa-print" aria-hidden="true"></i>
+                        <b> Imprimer</b>
+                    </a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-10 col-sm-10"></div>
+            <div class="col-lg-2 col-sm-2">
+                <ol class="breadcrumb ms-auto" *ngIf="tableau === true">
+                    <li> <a (click)="pdfTableau()" class="btn btn-orange ">
+                        <i class="fas fa-print" aria-hidden="true"></i>
+                        <b> Imprimer</b>
+                    </a></li>
+                </ol>
+            </div>
+        </div><br>
+        <div class="row" *ngIf="tableau === false" id="graphe">
+            <div class="col-lg-4 col-sm-4">
+                <canvas baseChart 
+                    [data]="pieChartData" 
+                    [labels]="pieChartLabels" 
+                    [chartType]="pieChartType"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [legend]="pieChartLegend">
+                </canvas>
+            </div>
+            
+            <div class="col-lg-4 col-sm-4">
+                    <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [plugins]="barChartPlugins"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType">
+                    </canvas>
+            </div>
+            <div class="col-lg-4 col-sm-3">
+                <canvas baseChart
+                    [datasets]="barChartData2"
+                    [labels]="barChartLabels2"
+                    [options]="barChartOptions2"
+                    [plugins]="barChartPlugins2"
+                    [legend]="barChartLegend2"
+                    [chartType]="barChartType2" >
+                </canvas>
+            </div>
+        </div>
+        <div class="row" *ngIf="tableau === true" id="tableau">
+            <div class="col-lg-3 col-sm-3 white-box">
+                <h4 style="text-align: center; color: #684f0e;"><b>Utilisateurs TCHA-SO</b></h4>
+                <table class="table no-wrap" width="100%"  cellspacing="1" cellpadding="5">
+                    <thead>
+                        <tr>
+                            <td><b>UTILISATEURS</b></td>
+                            <td><b>NOMBRE</b></td>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Clients</td>
+                            <td>{{allclient}}</td>
+                        </tr>
+                        <tr>
+                            <td>Travailleurs</td>
+                            <td>{{alltravailleurs}}</td>
+                        </tr>
+                        <tr>
+                            <td>Administrateurs</td>
+                            <td>{{alladmins}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-1 col-sm-1"></div>
+            <div class="col-lg-3 col-sm-3 white-box">
+                <h4 style="text-align: center; color: #684f0e;"><b>Genre clients</b></h4>
+                <table class="table no-wrap" width="100%"  cellspacing="1" cellpadding="5">
+                    <thead>
+                        <tr>
+                            <td><b>CLIENTS</b></td>
+                            <td><b>NOMBRE</b></td>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tous Clients</td>
+                            <td>{{allclient}}</td>
+                        </tr>
+                        <tr>
+                            <td>HOMMES</td>
+                            <td>{{cpteHom}}</td>
+                        </tr>
+                        <tr>
+                            <td>FEMMES</td>
+                            <td>{{cpteFem}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-lg-1 col-sm-1"></div>
+            <div class="col-lg-3 col-sm-3 white-box" >
+                <h4 style="text-align: center; color: #684f0e;"><b>Genre travailleurs</b></h4>
+                <table class="table no-wrap" width="100%"  cellspacing="1" cellpadding="5">
+                    <thead>
+                        <tr>
+                            <td><b>TRAVAILLEURS</b></td>
+                            <td><b>NOMBRE</b></td>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tous Travailleurs</td>
+                            <td>{{alltravailleurs}}</td>
+                        </tr>
+                        <tr>
+                            <td>HOMMES</td>
+                            <td>{{cpteHom2}}</td>
+                        </tr>
+                        <tr>
+                            <td>FEMMES</td>
+                            <td>{{cpteFem2}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+        
+        </div>
+    </div>
+</div>

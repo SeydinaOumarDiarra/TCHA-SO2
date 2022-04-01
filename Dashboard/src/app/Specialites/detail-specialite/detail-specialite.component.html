@@ -1,0 +1,120 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center sous-header">
+            <div class="col-lg-1 col-sm-1 col-md-1 col-xs-12">
+                <a [routerLink]="['/specialites']">
+                    <b>
+                        <i class="fas fa-chevron-left" style="font-weight: bold; font-size: 25px; color: #684f0e;" aria-hidden="true"></i>
+                    </b>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">DETAIL SPECIALITE</h4>
+            </div>
+            <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex"> 
+                    <ol class="breadcrumb ms-auto">
+                        <li> 
+                            <a (click)="show(specialite.id)" class="btn btn-orange ">
+                                <i class="fas fa-plus" aria-hidden="true"></i>
+                                <b> Affecter travailleur</b>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    
+    <div class="container-fluid">
+        <div class="row">
+            
+            <div class="col-lg-4 col-xlg-3 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="form-horizontal form-material">
+                            <div class="form-group mb-4">
+                                <label class="col-md-12 p-0">NOM SERVICE</label>
+                                <div class="col-md-12 border-bottom p-0">{{specialite.service.nomser}}</div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="example-email" class="col-md-12 p-0">NOM SPECIALITE</label>
+                                <div class="col-md-12 border-bottom p-0">{{specialite.nomspe}}</div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="example-email" class="col-md-12 p-0">DESCRIPTION</label>
+                                <div class="col-md-12 border-bottom p-0">{{specialite.description}}</div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <div class="user-btm-box mt-5 d-md-flex">
+                                    <div class="col-md-6 col-sm-6">
+                                        <button class="btn btn-orange" style="background-color: #684f0e; color: white;" [routerLink]="['/modifierspecialite', specialite.id]">
+                                        <i class="fa fa-edit" aria-hidden="true"></i> Modifier</button>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <button class="btn btn-orange" style="background-color: #e75500; color: white;">
+                                        <i class="fa fa-trash" aria-hidden="true" onclick ="return(confirm('Etes-vous certain de vouloir supprimer ce service ?'));"></i> Supprimer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-lg-8 col-xlg-9 col-md-12">
+                <div class="white-box">
+                    <div class="d-md-flex mb-3">
+                        <div class="row col-lg-8 col-xlg-9 col-md-12">
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                                <h3 class="box-title mb-0">Travailleurs liés</h3>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6" >
+                                <form role="search">
+                                    <!-- <a href="" class="active">
+                                        <i class="fa fa-search" style="color: #f5bb20;"></i>
+                                    </a> -->
+                                    <input type="text" name="search" autocomplete="off"  [(ngModel)]="searchText" placeholder="Rechercher..." class="form-control mt-0">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table no-wrap">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0"><b>Photo</b></th>
+                                    <th class="border-top-0"><b>Nom</b></th>
+                                    <th class="border-top-0"><b>Prénom</b></th>
+                                    <th class="border-top-0"><b>Action</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor= 'let liste of workers | filter:searchText  | paginate : {itemsPerPage : 4, currentPage: p}'>
+                                    <td class="txt-oflo"><img src="{{photo}} + {{liste?.id}}" style="height: 25px; border-radius: 50px;"></td>
+                                    <td class="txt-oflo">{{liste?.nom}}</td>
+                                    <td class="txt-oflo">{{liste?.prenom}}</td>
+                                    <td>
+                                        <span class="text-success alignement">
+                                            <a > <i class="fa fa-edit" aria-hidden="true" style="color: #f5bb20;"></i></a>
+                                            <a (click)="alertConfirmationTravailleur(liste.id)"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <a [routerLink]="['/detailtravailleur', liste.id]"><i style="color: #684f0e;" class="fas fa-info-circle" aria-hidden="true"></i></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>                      
+                         <pagination-controls style="margin-left: 50%; background-color: #684f0e;" (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

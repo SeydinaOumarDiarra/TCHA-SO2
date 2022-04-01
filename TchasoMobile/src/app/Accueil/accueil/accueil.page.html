@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button>
+        <ion-menu-button ></ion-menu-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="getProfil()">
+        <ion-icon slot="icon-only" name="contact"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <app-connectnotify></app-connectnotify>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img src="../../../assets/images/entete1.png" alt="img-entete" class="img-entete"></ion-img>
+  <div class="infos">
+    <ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="5" style="margin-top: 20px;">
+            <img class="photo" src="{{photo}}+{{worker.id}}" alt="">
+          </ion-col>
+          <ion-col size="7" style="text-align: center">
+            <h5><b>{{worker.prenom}} {{worker.nom}}</b></h5>
+            <h5>Etat : <b class="alertsuccess">{{worker.etat}}</b></h5>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+  <div class="actions">
+    <div>
+      <ion-row class="ligne">
+        <ion-col size="4">
+          <ion-item-divider></ion-item-divider>
+        </ion-col>
+        <ion-col size="4">
+          <p><span class="titre_act">CONSULTER</span></p>
+        </ion-col>
+        <ion-col size="4">
+          <ion-item-divider></ion-item-divider>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="flex1">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4" [routerLink]="['/profiltravailleur']">
+            <img src="../../../assets/images/infos.png" alt="">
+            <p><span class="titre_act">Profil</span><br>Consultez, modifiez votre profil utilisateur</p>
+          </ion-col>
+          <ion-col size="4" [routerLink]="['/competences']">
+            <img src="../../../assets/images/competence.png" alt="">
+            <p><span class="titre_act">Compétences</span>  <br>Consultez toutes vos compétences de travail</p>
+          </ion-col>
+          <ion-col size="4" [routerLink]="['/liste-service']">
+            <img src="../../../assets/images/collegue.png" alt="">
+            <p><span class="titre_act">Collègues</span><br>Visualisez, rencontrez vos collègues de travail</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+</ion-content>

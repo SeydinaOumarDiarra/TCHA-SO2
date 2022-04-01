@@ -1,0 +1,97 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center sous-header">
+            <div class="col-lg-1 col-sm-1 col-md-1 col-xs-12">
+                <a [routerLink]="['/services']">
+                    <b>
+                        <i class="fas fa-chevron-left" style="font-weight: bold; font-size: 25px; color: #684f0e;" aria-hidden="true"></i>
+                    </b>
+                </a>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                <h4 class="page-title">DETAIL SERVICE</h4>
+            </div>
+            <div class="col-lg-6 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex"> 
+                    <ol class="breadcrumb ms-auto">
+                        <li> 
+                            <a (click)="show(service.id)" class="btn btn-orange ">
+                                <i class="fas fa-plus" aria-hidden="true"></i>
+                                <b> Nouvelle spécialité </b>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+    <div class="row justify-content-center" style="margin: 0 auto;">
+        <!-- Mettre ici le contenu de la page -->
+        <div class="row">
+            <div class="col-lg-4 col-xlg-3 col-md-12">
+                <div class="white-box">
+                    <img width="60%" alt="icon service " src="{{iconimage}} + {{service.id}}">
+                    <div class="user-btm-box mt-5 d-md-flex">
+                        <div class="col-md-12 col-sm-12 text-center">
+                            <h4 style="color: #684f0e;"><b>Service {{service.nomser}}</b></h4>
+                        </div>
+                    </div>
+                    <div class="user-btm-box mt-3 d-md-flex">
+                        <div class="col-md-12 col-sm-12">
+                            <h5> <b>Description :</b></h5>
+                            <p>{{service.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-xlg-9 col-md-12">
+                <div class="white-box">
+                    <div class="d-md-flex mb-3">
+                        <div class="row col-lg-8 col-xlg-9 col-md-12">
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                                <h3 class="box-title mb-0">Spécialités liées</h3>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6" >
+                                <form role="search">
+                                    <a href="" class="active">
+                                        <i class="fa fa-search" style="color: #f5bb20;"></i>
+                                    </a>
+                                    <input type="text" name="search" autocomplete="off"  [(ngModel)]="searchText" placeholder="Rechercher..." class="form-control mt-0">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table no-wrap">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0"><b>#</b></th>
+                                    <th class="border-top-0"><b>Nom</b></th>
+                                    <th class="border-top-0"><b>Action</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let liste of listeSpecialites | filter:searchText | paginate : {itemsPerPage : 4, currentPage: p}">
+                                    <td class="txt-oflo">{{liste.id}}</td>
+                                    <td class="txt-oflo">{{liste.nomspe}}</td>
+                                    <td>
+                                        <span class="text-success alignement">
+                                            <a [routerLink]="['/modifierspecialite', liste.id]"> <i class="fa fa-edit" style="color: #f5bb20;" aria-hidden="true"></i></a>
+                                            <a (click)="alertConfirmation(liste.id)"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <a [routerLink]="['/detailspecialite', liste.id]"><i style="color: #684f0e;" class="fas fa-info-circle" aria-hidden="true"></i></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls style="margin-left: 50%; background-color: #684f0e;" (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

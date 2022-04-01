@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <app-connectnotify></app-connectnotify>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-row class="bare-grise">
+      <p style="color: white; margin: 10px 0px 0px 50px;">Détail notification</p>
+    </ion-row>    
+    <ion-list>
+      <ion-item  *ngIf="noti?.travailleurclient !== null">
+        <ion-avatar slot="start">
+          <ion-img src="{{image}} + {{noti?.travailleur?.id}}"></ion-img>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{noti?.travailleur.nom}} {{noti?.travailleur.prenom}}</h2>
+          <h3>
+            Travailleur - {{noti?.travailleur.specialite.nomspe}}
+            <span>{{noti?.datedemande| date: 'dd-MM-Y'}}</span>
+          </h3>
+        </ion-label>
+      </ion-item>
+      <ion-item *ngIf="noti?.client !== null">
+        <ion-avatar slot="start">
+          <ion-img src="../../../assets/images/profil-client.png"></ion-img>
+        </ion-avatar>
+        <ion-label>
+          <h2>{{noti?.client.nom}} {{noti?.client.prenom}}</h2>
+          <h3>
+            {{noti?.client.type}}
+            <span style="float: right;">{{noti?.datedemande| date: 'dd-MM-Y'}}</span>
+          </h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="10" *ngIf="noti?.client !== null">
+        {{noti?.motifdemande}}
+      </ion-col>
+      <ion-col size="10" *ngIf="noti?.travailleurclient !== null">
+        <p *ngIf="noti?.isaccept === true">
+          Salut {{noti?.travailleurclient.nom}} {{noti?.travailleurclient.prenom}}, je confirme votre demande.
+        <br>Merci pour votre consideration.
+        </p>
+        <p *ngIf="noti?.isaccept === false">
+          Salut {{noti?.travailleurclient.nom}} {{noti?.travailleurclient.prenom}}, désolé je ne suis pas en mesure de satisfaire votre demande.
+        <br>Merci pour votre consideration.
+        </p>
+      </ion-col>
+    </ion-row><br><br>
+    <ion-row *ngIf="noti?.client !== null">
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <ion-row  *ngIf="noti?.isaccept === true">
+          <ion-col size="6">
+            <ion-button color="warning" (click)="confirmer(noti)" style="float: right;"disabled="disabled">Confirmer</ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button color="danger" (click)="decliner(noti)">Décliner</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row  *ngIf="noti?.isaccept === false">
+          <ion-col size="6">
+            <ion-button color="warning" (click)="confirmer(noti)" style="float: right;">Confirmer</ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button color="danger" (click)="decliner(noti)" disabled="disabled">Décliner</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row  *ngIf="noti?.isaccept === null">
+          <ion-col size="6">
+            <ion-button color="warning" (click)="confirmer(noti)" style="float: right;">Confirmer</ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button color="danger" (click)="decliner(noti)">Décliner</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+
+    <!-- <ion-fab vertical="center" horizontal="end" slot="fixed" class="watts" *ngIf="noti?.travailleurclient !== null">
+      <ion-fab-button  href="https://wa.me/+223{{noti?.travailleurclient.numWhasapp}}?text=Bonjour,%vous%20m'aviez%20contacter%20?20sur%20TCHA-SO">
+          <img src="../../../assets/icon/wattsapp.png" style="width: 40px; height: 40px;" (click)="contact()"/>
+      </ion-fab-button>
+  </ion-fab>
+  <ion-fab vertical="center" horizontal="end" slot="fixed" class="watts" *ngIf="noti?.client !== null">
+    <ion-fab-button  href="https://wa.me/+223{{noti?.client.numWhasapp}}?text=Bonjour,%vous%20m'aviez%20contacter%20?%20sur%20TCHA-SO">
+        <img src="../../../assets/icon/wattsapp.png" style="width: 40px; height: 40px;" (click)="contact()"/>
+    </ion-fab-button>
+</ion-fab> -->
+
+</ion-content>

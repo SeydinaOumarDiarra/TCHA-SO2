@@ -1,0 +1,179 @@
+<app-header></app-header>
+<app-menu></app-menu>
+<div class="page-wrapper">
+    <div class="page-breadcrumb bg-white">
+        <div class="row align-items-center sous-header">
+            <div class="col-lg-6 col-md-4 col-sm-4 col-xs-12">
+                <h4 class="page-title">GESTION UTILISATEURS</h4>
+            </div>
+            <div class="col-lg-6 col-sm-8 col-md-8 col-xs-12">
+                <div class="d-md-flex"> 
+                    <ol class="breadcrumb ms-auto">
+                        <li> <a class="btn btn-orange">
+                            <i class="fas fa-plus" aria-hidden="true"></i>
+                            <b> Ajouter un utilisateur </b>
+                            <div class="btn-orange-content">
+                                <a href="ajoutadmin"><p>Administrateurs</p></a>
+                                <a href="ajouttravailleur"><p>Travailleurs</p></a>
+                            </div>
+                        </a>
+                    </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="white-box">
+                <div class="d-md-flex mb-3">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ms-auto">
+                        <i class="fa fa-users" style="font-weight: bold; font-size: 50px; margin: 0 auto;" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ms-auto">
+                        <label>Trier par : </label>
+                        <select class="form-select shadow-none row border-top" (change)="users($event)">
+                            <option>Clients</option>
+                            <option>Travailleurs</option>
+                            <option>Administrateurs</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        <!-- Mettre ici le contenu de la page -->
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="white-box">
+                    <div class="d-md-flex mb-3">
+                        <div class="row col-md-12 col-lg-12 col-sm-12">
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                                <h3 class="box-title mb-0">Liste des utilisateurs</h3>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                                <form role="search" >
+                                    <a href="" class="active">
+                                        <i class="fa fa-search" style="color: #f5bb20;"></i>
+                                    </a>
+                                    <input type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Rechercher..." class="form-control mt-0">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+
+                        <!-- Affichage Par défaut -->
+                        <table class="table no-wrap" *ngIf="adminEtat === false && clientEtat === false  && travailleurEtat === false">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0"><b>#</b></th>
+                                    <th class="border-top-0"><b>Nom</b></th>
+                                    <th class="border-top-0"><b>Prénom</b></th>
+                                    <th class="border-top-0"><b>Genre</b></th>
+                                    <th class="border-top-0"><b>Action</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor= 'let liste of customers | filter:searchText | paginate : {itemsPerPage : 5, currentPage: p}'>
+                                    <td class="txt-oflo">{{liste?.id}}</td>
+                                    <td class="txt-oflo">{{liste?.nom}}</td>
+                                    <td class="txt-oflo">{{liste?.prenom}}</td>
+                                    <td class="txt-oflo">{{liste?.genre}}</td>
+                                    <td>
+                                        <span class="text-success alignement">
+                                            <a [routerLink]="['/modifierclient', liste?.id]"> <i class="fa fa-edit" style="color: #f5bb20;" aria-hidden="true"></i></a>
+                                            <a (click)="alertConfirmationClient(liste.id)"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <a [routerLink]="['/detailclient', liste.id]"><i style="color: #684f0e;" class="fas fa-info-circle" aria-hidden="true"></i></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls style="margin-left: 50%; background-color: #684f0e;" (pageChange)="p = $event"></pagination-controls>
+                        <!-- Affichage Administrateurs -->
+                        <table class="table no-wrap" *ngIf="adminEtat === true">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0"><b>#</b></th>
+                                    <th class="border-top-0"><b>Nom</b></th>
+                                    <th class="border-top-0"><b>Prénom</b></th>
+                                    <th class="border-top-0"><b>Type</b></th>
+                                    <th class="border-top-0"><b>Action</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor= 'let liste of utilisateurs | filter:searchText | paginate : {itemsPerPage : 5, currentPage: p}'>
+                                    <td class="txt-oflo">{{liste.id}}</td>
+                                    <td class="txt-oflo">{{liste.nom}}</td>
+                                    <td class="txt-oflo">{{liste.prenom}}</td>
+                                    <td class="txt-oflo">{{liste.profile}}</td>
+                                    <td>
+                                        <span class="text-success alignement">
+                                            <a [routerLink]="['/modifieradmin', liste.id]"> <i class="fa fa-edit" style="color: #f5bb20;" aria-hidden="true"></i></a>
+                                            <a (click)="alertConfirmationAdmin(liste.id)"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <a [routerLink]="['/detailadmin', liste.id]"><i style="color: #684f0e;" class="fas fa-info-circle" aria-hidden="true"></i></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- Affichage client -->
+                        <table class="table no-wrap" *ngIf="clientEtat === true">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0"><b>#</b></th>
+                                    <th class="border-top-0"><b>Nom</b></th>
+                                    <th class="border-top-0"><b>Prénom</b></th>
+                                    <th class="border-top-0"><b>Action</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor= 'let liste of utilisateurs | filter:searchText | paginate : {itemsPerPage : 5, currentPage: p}'>
+                                    <td class="txt-oflo">{{liste?.id}}</td>
+                                    <td class="txt-oflo">{{liste?.nom}}</td>
+                                    <td class="txt-oflo">{{liste?.prenom}}</td>
+                                    <td>
+                                        <span class="text-success alignement">
+                                            <a  [routerLink]="['/modifierclient', liste?.id]"> <i class="fa fa-edit" aria-hidden="true" style="color: #f5bb20;"></i></a>
+                                            <a (click)="alertConfirmationClient(liste.id)"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <a [routerLink]="['/detailclient', liste.id]"><i style="color: #684f0e;" class="fas fa-info-circle" aria-hidden="true"></i></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                         <!-- Affichage travailleurs -->
+                         <table class="table no-wrap" *ngIf="travailleurEtat === true">
+                            <thead>
+                                <tr>
+                                    <th class="border-top-0"><b>Photo</b></th>
+                                    <th class="border-top-0"><b>Nom</b></th>
+                                    <th class="border-top-0"><b>Prénom</b></th>
+                                    <th class="border-top-0"><b>Spécialité</b></th>
+                                    <th class="border-top-0"><b>Action</b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor= 'let liste of utilisateurs | filter:searchText | paginate : {itemsPerPage : 5, currentPage: p}'>
+                                    <td class="txt-oflo"><img src="{{photo}} + {{liste?.id}}" style="height: 25px; border-radius: 50px;"></td>
+                                    <td class="txt-oflo">{{liste?.nom}}</td>
+                                    <td class="txt-oflo">{{liste?.prenom}}</td>
+                                    <td class="txt-oflo">{{liste?.specialite?.nomspe}}</td>
+                                    <td>
+                                        <span class="text-success alignement"> 
+                                            <a  [routerLink]="['/modifiertravailleur', liste?.id]"> <i class="fa fa-edit" aria-hidden="true" style="color: #f5bb20;"></i></a>
+                                            <a (click)="alertConfirmationTravailleur(liste.id)"><i style="color: red;" class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <a [routerLink]="['/detailtravailleur', liste.id]"><i style="color: #684f0e;" class="fas fa-info-circle" aria-hidden="true"></i></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,17 @@
+<ion-content>
+  <ion-row style="background-color: #f5bb20;">
+    <ion-col size="10"><img src="{{iconimage}} + {{serv.id}}"><b>{{serv.nomser}}</b></ion-col>
+    <ion-col size="2"> <a (click)="close()"><ion-icon name="close" class="close"></ion-icon></a></ion-col>
+  </ion-row>
+ 
+  <ion-list show-reorder = "true" *ngFor="let spec of travaileurSp" no-margin>
+    <a (click)="travailleur(spec.id)">
+      <ion-row>
+        <ion-item-divider>
+          <ion-col size="10"><b>{{spec.specialite}}</b></ion-col>
+          <ion-col size="2" class="chiffre"><b>{{spec.total}}</b></ion-col>
+        </ion-item-divider>
+      </ion-row>
+    </a>
+ </ion-list>
+</ion-content>

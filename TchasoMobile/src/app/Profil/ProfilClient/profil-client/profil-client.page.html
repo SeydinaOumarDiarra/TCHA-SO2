@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" >
+      <app-connect></app-connect>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="header">
+    <h2>{{client?.prenom}} {{client?.nom}}</h2>
+  </div>
+  <div class="space-between">
+  </div>
+  <div class="flex">
+    <div class="border-white">
+      <div class="img-box">
+        <img src="../../../../assets/images/profil-client.png">
+      </div>
+    </div>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" class="texte">Nom:</ion-col>
+      <ion-col size="6" class="details">{{client.nom}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="texte">Prénom(s):</ion-col>
+      <ion-col size="6" class="details">{{client.prenom}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="texte">Genre:</ion-col>
+      <ion-col size="6" class="details">{{client.genre}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="texte">Téléphone</ion-col>
+      <ion-col size="6" class="details">{{client.numWhasapp}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="texte">Nom d'utilisateur:</ion-col>
+      <ion-col size="6" class="details">{{client.login}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="texte">Etat:</ion-col>
+      <ion-col size="6" class="details">{{client.etat}}</ion-col>
+    </ion-row><br>
+    
+    <ion-button  expand="block" (click)="changePwd()">Changer le mot de passe</ion-button>
+    <ion-button  expand="block" (click)="changeInfos()">Modifier mes infos</ion-button>
+  </ion-grid>
+ 
+</ion-content>

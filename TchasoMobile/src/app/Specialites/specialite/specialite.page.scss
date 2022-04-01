@@ -1,0 +1,22 @@
+.bare-grise{
+    height: 40px; 
+    width: 100%; 
+    margin-top: -500px auto; 
+    background-color:  #684f0e;
+}
+.icon-person{
+    margin: 0px 0px 0px 120px; 
+    font-size: 25px;
+    color: #684f0e;
+}
+ion-fab {
+    ion-fab-button {
+        --background: linear-gradient(to bottom, #684f0e, #684f0e, #684f0e, #684f0e, #f5bb20, #f5bb20, #f5bb20);
+        // --background: var(--ion-color-white);
+        margin-bottom: 3vh;
+        --background-hover: none;
+        border: 1vh solid var(--ion-color-white);
+        border-radius: 50%;
+        margin-top: 300%;
+    }
+}

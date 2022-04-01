@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <app-connectnotify></app-connectnotify>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row class="bare-grise">
+    <p style="color: white; margin: 10px 0px 0px 50px;">Mes compétences</p>
+  </ion-row>
+  
+  <ion-list>
+    <div *ngFor="let cp of competences">
+      <ion-item  *ngIf="cp.etat === 'actif'" [routerLink]="['/detail-competence', cp.id]">
+        <ion-label>
+          <h2>{{cp?.nomCom}}</h2>
+        </ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+
+
+  <ion-fab vertical="center" horizontal="end" slot="fixed">
+    <ion-fab-button  (click)="addCompetence(cp?.id)">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

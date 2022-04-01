@@ -1,0 +1,51 @@
+<ion-content [fullscreen]="true">
+  <ion-img src="../../../assets/images/entete1.png" alt="img-entete" class="img-entete"></ion-img>
+  <ion-img src="../../../assets/images/logo.png" alt="img-logo" class="img-logo"></ion-img>
+
+    <h4 style="text-align: center; font-size: 25px; color: #684f0e;"><b>Inscription-Suite</b></h4>
+  <form #form="ngForm" novalidate>
+    <ion-card>
+      <ion-list>
+        <ion-item>
+          <ion-select required name="specialite" #specialite="ngModel" placeholder="Spécialité" [(ngModel)]="worker.specialite" style="width: 100px;">
+            <ion-select-option *ngFor="let spec of listeSpecialite" value={{spec.id}}>{{spec.nomspe}}</ion-select-option>
+          </ion-select>
+          <ion-icon name="ribbon" style="margin-left: 120px;"></ion-icon>
+        </ion-item>
+        <ion-text color="danger" *ngIf="specialite.invalid && specialite.touched" style="margin-left: 20px;">
+          La spécialité est obligatoire
+        </ion-text>
+        <ion-item class="box1">
+          <ion-input required name="username" type="text" #username="ngModel" [(ngModel)]="worker.username" placeholder="Votre nom d'utilisateur"></ion-input>
+          <ion-icon name="person"></ion-icon>
+        </ion-item>
+        <ion-text color="danger" *ngIf="username.invalid && username.touched" style="margin-left: 20px;">
+          Le nom d'utilisateur est obligatoire
+        </ion-text>
+        <ion-item>
+          <ion-input name="photo" type="file" accept=".jpg, .jpeg, .png" #photo="ngModel"  (change)="preview($event)" [(ngModel)]="worker.photo" placeholder="Votre photo" required></ion-input>
+          <ion-icon name="image"></ion-icon>
+        </ion-item>
+        <ion-text color="danger" *ngIf="photo.invalid && photo.touched" style="margin-left: 20px;">
+          La photo est obligatoire
+        </ion-text>
+        <ion-item>
+          <ion-input name="piece" type="file" accept=".jpg, .jpeg, .png" #piece="ngModel"  (change)="previewpiece($event)" [(ngModel)]="worker.piece" placeholder="Pièce d'identité" required></ion-input>
+          <ion-icon name="list"></ion-icon>
+        </ion-item>
+        <ion-text color="danger" *ngIf="piece.invalid && piece.touched" style="margin-left: 20px;">
+          La pièce d'identité est obligatoire
+        </ion-text>
+      </ion-list>
+    </ion-card>
+    <ion-row>
+      <ion-col size="6">
+        <ion-button expand="block" routerLink="/inscriptiontravailleur"  class="btn-inscription">retour</ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button type="submit"  (click)="inscription(form)" color="warning" expand="block">Valider</ion-button>
+      </ion-col>
+    </ion-row> 
+  </form>
+</ion-content>
+

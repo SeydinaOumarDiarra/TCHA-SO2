@@ -1,0 +1,52 @@
+ion-content{
+    --background:rgb(212, 210, 208);
+  }
+.box1 {
+    border-color: #684f0e;
+    border-width: thin;
+    border-style: 2px;
+    border-radius: 0px 50px 50px 0px;
+}
+.box2 {
+    border: none;
+}
+.img-logo{
+    width: 150px;
+    margin: -20px 0px 20px 120px;
+}
+.img-entete{
+    width: 200px;
+}
+form{
+    margin: 20px 0px 0px -26px;
+}
+
+ion-card{
+    margin-top: 40px;
+    border-radius: 0px 50px 50px 0px;
+    box-shadow: 5px 5px 5px #684f0eed;
+}
+ion-button{
+    --border-radius: 50px 0px 0px 50px;
+    --display: block;
+    --margin: 0 auto 0px;
+    color: #684f0e;
+    font-size: 15px;
+    width: 120px;
+    float: right;
+    text-transform: lowercase;
+}
+.btn-inscription{
+    --background: #684f0e;
+    color: #ffff;
+    --background-hover: none;
+    width: 130px;
+    float: left;
+    text-align: center;
+    --margin: 0px 0px 0px 30px;
+    --border-radius: 0px 50px 50px 0px;
+}
+ion-icon{
+    font-size: 20px;
+    color: #f5bb20;
+}
